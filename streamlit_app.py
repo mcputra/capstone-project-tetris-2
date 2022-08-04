@@ -23,6 +23,7 @@ components.html(
 
 with st.sidebar:
     st.title("Hubungan Status Ekonomi dengan Tingkat Penyelesaian Sekolah")
+    tipe = st.selectbox("Tipe Plot:", ("Bar", "Point"))
     year = st.selectbox("Tahun:", ("Semua", "2015", "2016", "2017", "2018", "2019", "2020", "2021"))
     jenjang = st.selectbox("Jenjang Pendidikan:", ("Semua", "SD / Sederajat", "SMP / Sederajat", "SMA / Sederajat"))
 
@@ -78,14 +79,14 @@ with col3:
 
 if year == "Semua" and jenjang == "Semua":
     chart = sns.catplot(x='Tahun', y='Persentase Penyelesaian', hue='Kelompok Pengeluaran', 
-                        col='Jenjang Pendidikan', data=data, kind='bar')
+                        col='Jenjang Pendidikan', data=data, kind=tipe.lower())
 elif year == "Semua" and jenjang != "Semua":
     chart = sns.catplot(x='Tahun', y='Persentase Penyelesaian', hue='Kelompok Pengeluaran', 
-                        col='Jenjang Pendidikan', data=data[data['Jenjang Pendidikan'] == jenjang], kind='bar')
+                        col='Jenjang Pendidikan', data=data[data['Jenjang Pendidikan'] == jenjang], kind=tipe.lower())
 elif year != "Semua" and jenjang == "Semua":
     chart = sns.catplot(x='Tahun', y='Persentase Penyelesaian', hue='Kelompok Pengeluaran', 
-                        col='Jenjang Pendidikan', data=data[data['Tahun'] == year], kind='bar')
+                        col='Jenjang Pendidikan', data=data[data['Tahun'] == year], kind=tipe.lower())
 else:
     chart = sns.catplot(x='Tahun', y='Persentase Penyelesaian', hue='Kelompok Pengeluaran', 
-                        col='Jenjang Pendidikan', data=data[(data['Jenjang Pendidikan'] == jenjang) & (data['Tahun'] == year)], kind='bar')
+                        col='Jenjang Pendidikan', data=data[(data['Jenjang Pendidikan'] == jenjang) & (data['Tahun'] == year)], kind=tipe.lower())
 st.pyplot(chart)
