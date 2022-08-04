@@ -90,3 +90,6 @@ else:
     chart = sns.catplot(x='Tahun', y='Persentase Penyelesaian', hue='Kelompok Pengeluaran', 
                         col='Jenjang Pendidikan', data=data[(data['Jenjang Pendidikan'] == jenjang) & (data['Tahun'] == year)], kind=tipe.lower())
 st.pyplot(chart)
+
+st.markdown("Dari visualisasi di atas dapat disimpulkan bahwa terdapat hubungan antara status ekonomi dengan tingkat penyelesaian sekolah.")
+st.markdown("Status ekonomi terbawah memiliki tingkat penyelesaian sekolah terendah, sedangkan status ekonomi teratas memiliki tingkat penyelesaian sekolah tertinggi.")
